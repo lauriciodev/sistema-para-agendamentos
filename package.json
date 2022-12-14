@@ -1,0 +1,25 @@
+{
+  "name": "sistema-para-agendamentos",
+  "version": "1.0.0",
+  "description": "sistema de agendamentos usando mongo-db",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LauricioX/sistema-para-agendamentos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LauricioX/sistema-para-agendamentos/issues"
+  },
+  "homepage": "https://github.com/LauricioX/sistema-para-agendamentos#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0"
+  }
+}
