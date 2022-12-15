@@ -12,7 +12,7 @@
     />
   </head>
   <body>
-    <div class="container w-75 p-5 bg-dark text-white">
+    <div class="bg-dark text-white">
       <div id="calendar"></div>
     </div>
   </body>
@@ -26,6 +26,10 @@
     let calendar = new FullCalendar.Calendar(element, {
       initialView: "dayGridMonth",
       locale: "pt-br",
+      events: "getcalendar",
+      eventClick: function (info) {
+        window.location.href = "/event/" + info.event.id;
+      },
     });
     calendar.render();
   </script>
