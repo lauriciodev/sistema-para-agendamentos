@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>cadastrar</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div id="calendar"></div>
+  </body>
+  <script>
+    let element = document.getElementById("calendar");
+    let calendar = new FullCalendar.Calendar(element, {
+      initialView: "dayGridMonth",
+      locale: "pt-br",
+    });
+    calendar.render();
+  </script>
+</html>
