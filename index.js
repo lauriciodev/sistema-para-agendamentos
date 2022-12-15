@@ -17,10 +17,12 @@ mongoose.connect("mongodb://localhost:27017/agendamentos", {
   useUnifiedTopology: true,
 });
 
+//rota principal
 app.get("/", (req, res) => {
   res.render("index");
 });
 
+//rota de cadastro
 app.get("/cadastro", (req, res) => {
   res.render("create");
 });
@@ -40,6 +42,12 @@ app.post("/create", async (req, res) => {
   } else {
     res.send("ocorreu uma falha");
   }
+});
+
+//rota de busca
+app.get("/getcalendar", async (req, res) => {
+  let appointments = await appointmentService.GetAll(false);
+  res.json(appointments);
 });
 
 app.listen(8080, () => {
