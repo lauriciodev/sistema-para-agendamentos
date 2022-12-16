@@ -53,8 +53,14 @@ app.get("/getcalendar", async (req, res) => {
 
 app.get("/consultas" , async(req,res) =>{
   let consulta = await  appointmentService.GetAll(true);
-
+  let user = consulta.map(response => ({
+    ...response,date:"data correção"
+  }))
    
+
+  console.log(user)
+
+  
    /* let day = consultas.date.getDate()+1
    let month = consultas.date.getMonth()+1
    let year = consultas.date.getFullYear()
