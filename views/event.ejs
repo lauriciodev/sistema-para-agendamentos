@@ -13,33 +13,38 @@
   </head>
   <body class="pt-4 text-center">
 
-    <h1>Dados da consulta</h1>
+    <h1>Todas as consulta</h1>
+    <a href="/" class="btn btn-dark" style="position: absolute; left: 10px; top: 10px;">Voltar</a>
+
     <div class="container-fluid">
+  <table border class="table table-striped table-hover ">
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Data</th>
+      <th>Email</th>
+      <th>CPF</th>
+      <th>Hora</th>
 
-    <table border class="table table-striped table-hover ">
-      <tr>
-        <th>Nome</th>
-        <th>Descrição</th>
-        <th>Data</th>
-        <th>Email</th>
-        <th>CPF</th>
-        <th>Hora</th>
+    </tr>
+<% user.forEach(user => { %> 
 
-      </tr>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.description %></td>
-        <td><%= date %></td>
-        <td><%= user.email %></td>
+    <tr>
+      <td><%= user._doc.name %></td>
+      <td><%= user._doc.description %></td>
+      <td><%=user.day %>/ <%=user.month %>/ <%=user.year %> </td>
+      <td><%= user._doc.email %></td>
 
-        <td><%= user.cpf %></td>
+      <td><%= user._doc.cpf %></td>
 
-        <td><%= user.time %></td>
-      </tr>
-    </table>
+      <td><%= user._doc.time %></td>
+    </tr>
+<%})%>
+
+  </table>
+   
   </div>
 
-    <a href="/" class="btn btn-dark">Voltar</a>
    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"

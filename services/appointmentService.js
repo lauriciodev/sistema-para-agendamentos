@@ -1,9 +1,11 @@
 const appointment = require("../models/appointment");
+const mongoose = require("mongoose");
 const AppointmentsFactory = require("../factories/AppointmentsFactory");
 
+const Appo = mongoose.model("Appointment", appointment);
 class AppointmentService {
   async Create(name, email, description, cpf, date, time) {
-    let newAppo = appointment.create({
+    let newAppo = new Appo({
       name,
       email,
       description,
@@ -23,10 +25,9 @@ class AppointmentService {
 
   async GetAll(showFinished) {
     if (showFinished) {
-      const data = await appointment.find();
-      return data
+      return await Appo.find();
     } else {
-      let appos = await appointment.find({ finished: false });
+      let appos = await Appo.find({ finished: false });
       let appointments = [];
 
       appos.forEach((appointment) => {
@@ -41,7 +42,7 @@ class AppointmentService {
 
   async GetById(id) {
     try {
-      let event = appointment.findById(id);
+      let event = Appo.findOne({ "_id": id });
       return event;
     } catch (erro) {
       console.log(erro);
@@ -49,4 +50,4 @@ class AppointmentService {
   }
 }
 
-module.exports = new AppointmentService;
+module.exports = new AppointmentService();
