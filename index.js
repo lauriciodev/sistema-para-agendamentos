@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const AppointmentService = require("./services/appointmentService");
 const appointment = require("./models/appointment");
 const appointmentService = require("./services/appointmentService");
+const AppointmentsFactory = require("./factories/AppointmentsFactory");
 
 app.use(express.static("public"));
 
@@ -50,9 +51,45 @@ app.get("/getcalendar", async (req, res) => {
   res.json(appointments);
 });
 
+app.get("/consultas" , async(req,res) =>{
+  let consulta = await  appointmentService.GetAll(true);
+
+   
+   /* let day = consultas.date.getDate()+1
+   let month = consultas.date.getMonth()+1
+   let year = consultas.date.getFullYear()
+   if(day < 10){
+    day = `0${day}`
+   }
+   if(month < 10){
+    month = `0${month}`
+   }
+
+   let data = day + "/ " + month + "/ " + year;  */
+
+})
+
 //rota especifica de cada evento clicado
 app.get("/event/:id", async (req, res) => {
-  res.json({ id: req.params.id });
+  
+   let user = await AppointmentService.GetById(req.params.id)
+   let day = user.start.getDate()+1
+   let month = user.start.getMonth()+1
+   let year = user.start.getFullYear()
+   if(day < 10){
+    day = `0${day}`
+   }
+   if(month < 10){
+    month = `0${month}`
+   }
+
+   let data = day + "/ " + month + "/ " + year;
+   
+   
+
+   res.render("event",{user:user,date:data})
+
+   
 });
 
 app.listen(8080, () => {
