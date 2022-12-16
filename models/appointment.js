@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const appointment = new mongoose.Schema({
+const appointment = new Schema({
   name: String,
   email: String,
   description: String,
@@ -10,4 +10,4 @@ const appointment = new mongoose.Schema({
   finished: Boolean,
 });
 
-module.exports = appointment;
+module.exports = model("Appointment", appointment);

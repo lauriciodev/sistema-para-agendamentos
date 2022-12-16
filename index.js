@@ -51,14 +51,14 @@ app.get("/getcalendar", async (req, res) => {
   res.json(appointments);
 });
 
-app.get("/consultas" , async(req,res) =>{
-  let consulta = await  appointmentService.GetAll(true);
-  let user = consulta.map(response => ({
-    ...response,date:"data correção"
+app.get("/consultas" , async (req,res) =>{
+  const consulta = await appointmentService.GetAll(true);
+  const user = consulta.map(response => ({
+    ...response._doc,
+    date: response.date.getDate()+1
   }))
-   
 
-  console.log(user)
+  res.send(user)
 
   
    /* let day = consultas.date.getDate()+1
@@ -78,26 +78,27 @@ app.get("/consultas" , async(req,res) =>{
 //rota especifica de cada evento clicado
 app.get("/event/:id", async (req, res) => {
   
-   let user = await AppointmentService.GetById(req.params.id)
-   let day = user.start.getDate()+1
-   let month = user.start.getMonth()+1
-   let year = user.start.getFullYear()
-   if(day < 10){
-    day = `0${day}`
-   }
-   if(month < 10){
-    month = `0${month}`
-   }
+  //  let user = await AppointmentService.GetById(req.params.id)
+  //  let day = user.start.getDate()+1
+  //  let month = user.start.getMonth()+1
+  //  let year = user.start.getFullYear()
+  //  if(day < 10){
+  //   day = `0${day}`
+  //  }
+  //  if(month < 10){
+  //   month = `0${month}`
+  //  }
 
-   let data = day + "/ " + month + "/ " + year;
+  //  let data = day + "/ " + month + "/ " + year;
    
    
 
-   res.render("event",{user:user,date:data})
+  //  res.render("event",{user:user,date:data})
 
    
 });
 
 app.listen(8080, () => {
-  console.log("online");
+  console.clear()
+  console.log("http://localhost:8080 - online");
 });
