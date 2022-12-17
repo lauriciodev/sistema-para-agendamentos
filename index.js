@@ -57,7 +57,11 @@ app.get("/consultas" , async(req,res) =>{
     ...response,day:response.date.getDate() +1,
     month:response.date.getMonth() +1,
     year:response.date.getFullYear()
-  }))
+  }));
+
+
+  //finalizando consultas
+  
    
 
   res.render("event",{user:user});

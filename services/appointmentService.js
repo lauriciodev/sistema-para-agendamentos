@@ -48,6 +48,10 @@ class AppointmentService {
       console.log(erro);
     }
   }
+
+  async finishAppointment(id){
+    Appo.updateOne({"_id":id},{})
+  }
 }
 
 module.exports = new AppointmentService();
