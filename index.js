@@ -44,7 +44,7 @@ app.post("/create", async (req, res) => {
     res.send("ocorreu uma falha");
   }
 });
-
+//lauricio esteve aqui
 //rota de busca
 app.get("/getcalendar", async (req, res) => {
   let appointments = await appointmentService.GetAll(false);
