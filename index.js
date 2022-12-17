@@ -59,12 +59,8 @@ app.get("/consultas" , async(req,res) =>{
     year:response.date.getFullYear()
   }));
 
-
-  //finalizando consultas
-  
-   
-
-  res.render("event",{user:user});
+  console.log(user)
+   res.render("event",{user:user});
 
 
 })
@@ -84,12 +80,20 @@ app.get("/event/:id", async (req, res) => {
    }
 
    let data = day + "/ " + month + "/ " + year;
-   
-   
 
    res.render("consulta",{user:user,date:data}) 
 
    
+});
+
+app.post("/finish",async (req,res) =>{
+  let id = req.body.id
+ let result = await appointmentService.FinishAppointment(id);
+  if(result){
+    res.redirect("/");
+  }else{
+    res.send("erro ao finalizar tarefa")
+  }
 });
 
 app.listen(8080, () => {

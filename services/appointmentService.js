@@ -49,8 +49,14 @@ class AppointmentService {
     }
   }
 
-  async finishAppointment(id){
-    Appo.updateOne({"_id":id},{})
+  async FinishAppointment(id){
+    try{
+     await Appo.findByIdAndUpdate(id,{finished: true});
+      return true;
+    }catch(erro){
+      console.log(erro);
+      return false;
+    }
   }
 }
 
