@@ -61,20 +61,7 @@ app.get("/consultas" , async(req,res) =>{
    
 
   res.render("event",{user:user});
-  //res.json(user)
 
-  
-   /* let day = consultas.date.getDate()+1
-   let month = consultas.date.getMonth()+1
-   let year = consultas.date.getFullYear()
-   if(day < 10){
-    day = `0${day}`
-   }
-   if(month < 10){
-    month = `0${month}`
-   }
-
-   let data = day + "/ " + month + "/ " + year;  */
 
 })
 
@@ -82,9 +69,9 @@ app.get("/consultas" , async(req,res) =>{
 app.get("/event/:id", async (req, res) => {
   
    let user = await AppointmentService.GetById(req.params.id)
-   let day = user.start.getDate()+1
-   let month = user.start.getMonth()+1
-   let year = user.start.getFullYear()
+   let day = user.date.getDate()+1
+   let month = user.date.getMonth()+1
+   let year = user.date.getFullYear()
    if(day < 10){
     day = `0${day}`
    }
@@ -96,7 +83,7 @@ app.get("/event/:id", async (req, res) => {
    
    
 
-   res.render("event",{user:user,date:data})
+   res.render("consulta",{user:user,date:data}) 
 
    
 });
