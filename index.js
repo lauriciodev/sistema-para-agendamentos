@@ -51,19 +51,7 @@ app.get("/getcalendar", async (req, res) => {
   res.json(appointments);
 });
 
-app.get("/consultas" , async(req,res) =>{
-  let consulta = await  appointmentService.GetAll(true);
-  let user = consulta.map(response => ({
-    ...response,day:response.date.getDate() +1,
-    month:response.date.getMonth() +1,
-    year:response.date.getFullYear()
-  }));
 
-  console.log(user)
-   res.render("event",{user:user});
-
-
-})
 
 //rota especifica de cada evento clicado
 app.get("/event/:id", async (req, res) => {
@@ -85,6 +73,35 @@ app.get("/event/:id", async (req, res) => {
 
    
 });
+
+app.get("/consultas" , async(req,res) =>{
+  let consulta = await  appointmentService.GetAll(true);
+  let user = consulta.map(response => ({
+    ...response,day:response.date.getDate() +1,
+    month:response.date.getMonth() +1,
+    year:response.date.getFullYear()
+  }));
+
+
+   res.render("event",{user:user});
+
+
+})
+
+//busca 
+app.get("/search",async (req,res) =>{
+  let context = req.query.search
+  let response = await appointmentService.Search(context);
+  let user = response.map(response => ({
+    ...response,day:response.date.getDate() +1,
+    month:response.date.getMonth() +1,
+    year:response.date.getFullYear()
+  }));
+  res.render("event",{user:user})
+})
+
+
+
 
 app.post("/finish",async (req,res) =>{
   let id = req.body.id

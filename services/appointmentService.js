@@ -58,6 +58,17 @@ class AppointmentService {
       return false;
     }
   }
+
+  //busca
+  async Search(busca){
+    try{
+      let result = await Appo.find().or([{email:busca},{cpf:busca},{name:busca}]);
+      return result;
+    }catch(erro){
+      console.log(erro);
+    }
+  }
+
 }
 
 module.exports = new AppointmentService();
