@@ -7,7 +7,7 @@ const appointmentService = require("./services/appointmentService");
 const AppointmentsFactory = require("./factories/AppointmentsFactory");
 
 app.use(express.static("public"));
-
+//url encoded
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
