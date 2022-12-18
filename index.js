@@ -101,6 +101,13 @@ app.get("/search",async (req,res) =>{
 })
 
 
+//enviando email de aviso da consulta
+let pullTime = 2000;
+
+setInterval(() =>{
+console.log("teste");
+},pullTime)
+
 
 
 app.post("/finish",async (req,res) =>{
