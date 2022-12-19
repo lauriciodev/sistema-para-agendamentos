@@ -102,11 +102,11 @@ app.get("/search",async (req,res) =>{
 
 
 //enviando email de aviso da consulta
-/* let pullTime = 2000;
+let pullTime = 3000;
 
 setInterval(async() =>{
 await appointmentService.SendNotification();
-},pullTime)  */
+},pullTime) 
 
 
 
