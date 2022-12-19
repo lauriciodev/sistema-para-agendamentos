@@ -13,6 +13,7 @@ class AppointmentService {
       date,
       time,
       finished: false,
+      notified:false
     });
     try {
       await newAppo.save();
@@ -67,6 +68,21 @@ class AppointmentService {
     }catch(erro){
       console.log(erro);
     }
+  }
+
+  //enviando email
+  async SendNotification(){
+    let appos = await this.GetAll(false);
+    appos.forEach( app =>{
+      let date = app.start.getTime();
+      let hour = 1000 * 60 * 60;
+      let gap = date - Date.now();
+
+      if(gap <= hour){
+        console.log(app.title)
+      console.log("falta menos de 1hora");
+      }
+    })
   }
 
 }
